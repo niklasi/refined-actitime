@@ -16,7 +16,7 @@ function saveOptions () {
 // Restores select box and checkbox state using the preferences
 // stored in chrome.storage.
 function restoreOptions () {
-  chrome.storage.sync.get({ taskId: 197, hoursPerDay: 3 }, function (items) {
+  chrome.storage.sync.get({ taskId: 197, hoursPerDay: 8 }, function (items) {
     document.getElementById('default-task').value = items.taskId
     document.getElementById('default-time').value = items.hoursPerDay
   })
