@@ -1,0 +1,28 @@
+{
+	"name": "Refined Actitime",
+	"version": "1.0.0",
+	"description": "Simplifies time tracking.",
+	"homepage_url": "https://github.com/niklasi/refined-actitime",
+	"manifest_version": 2,
+	"permissions": [
+		"https://*.actitime.com/*"
+	],
+	"icons": {
+		"128": "icon.png"
+	},
+	"content_scripts": [
+		{
+			"run_at": "document_end",
+			"matches": [
+				"https://*.actitime.com/user/submit_tt.do*"
+			],
+      "css": [
+        "content.css"
+      ],
+			"js": [
+        "vendor/jquery.slim.min.js",
+				"time-tracking.js"
+			]
+		}
+	]
+}
