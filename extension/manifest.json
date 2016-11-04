@@ -4,8 +4,13 @@
 	"description": "Simplifies time tracking.",
 	"homepage_url": "https://github.com/niklasi/refined-actitime",
 	"manifest_version": 2,
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
 	"permissions": [
-		"https://*.actitime.com/*"
+		"https://*.actitime.com/*",
+    "storage"
 	],
 	"icons": {
 		"128": "icon.png"
