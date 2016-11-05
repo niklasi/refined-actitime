@@ -1,7 +1,7 @@
 {
-	"name": "Refined Actitime",
+	"name": "Refined actiTIME",
 	"version": "1.0.0",
-	"description": "Simplifies time tracking.",
+	"description": "Simplifies time tracking in actiTIME.",
 	"homepage_url": "https://github.com/niklasi/refined-actitime",
 	"manifest_version": 2,
   "options_ui": {
