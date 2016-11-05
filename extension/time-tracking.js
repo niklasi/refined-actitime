@@ -4,8 +4,7 @@ chrome.storage.sync.get({ taskId: 197, hoursPerDay: 8 }, function (items) {
     const $el = $(el)
     if ($el.val() === '') {
       $el.val(items.hoursPerDay)
-    } else {
-      $el.css('background-color', 'rgba(49, 128, 0, 0.32)')
+      $el.css('background-color', 'rgba(255, 235, 141, 0.58)')
     }
   })
 })
