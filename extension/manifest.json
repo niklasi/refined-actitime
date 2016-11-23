@@ -10,11 +10,16 @@
   },
 	"permissions": [
 		"https://*.actitime.com/*",
+    "webNavigation",
     "storage"
 	],
 	"icons": {
 		"128": "icon.png"
 	},
+  "background": { 
+    "scripts": ["background.js"],
+    "persistent": false
+  },
 	"content_scripts": [
 		{
 			"run_at": "document_end",
