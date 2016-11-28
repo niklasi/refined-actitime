@@ -30,7 +30,6 @@
         "content.css"
       ],
 			"js": [
-        "vendor/jquery.slim.min.js",
 				"time-tracking.js"
 			]
 		}
