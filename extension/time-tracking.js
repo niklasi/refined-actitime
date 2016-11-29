@@ -39,7 +39,10 @@ function hasClass (el, className) {
 function fillDefaultHours () {
   chrome.storage.sync.get({ taskId: 197, hoursPerDay: '8:00' }, function (items) {
     [0, 1, 2, 3, 4, 5, 6]
-      .filter(i => !hasClass(document.getElementById(`leaveButton_${i}_table`), 'disabled'))
+      .filter(i => {
+        const leaveButton = document.getElementById(`leaveButton_${i}_table`)
+        return !hasClass(leaveButton, 'disabled') && leaveButton.title === 'Click to enter leave time'
+      })
       .map(i => document.getElementById(`spent_${items.taskId}_${i}`))
       .filter(el => el.value === '')
       .forEach(el => {
