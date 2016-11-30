@@ -1,7 +1,13 @@
 
 # Refined-Actitime
 
-Adds default values when tracking time and hides unneccessary ui elements.
+* Adds default values when tracking time
+* Hides unneccessary ui elements.
+* Move to previous/next week
+
+## Install
+
+https://chrome.google.com/webstore/search/refined-actitime
 
 ## Manual install
 
