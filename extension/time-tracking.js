@@ -24,6 +24,7 @@ eachTaskRow((el, i) => {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.message === 'ready') {
     fillDefaultHours()
+    createWeekLinks()
   }
 })
 
@@ -53,15 +54,27 @@ function noLeaveTime (i) {
   return leaveButtons[i].title === 'Click to enter leave time'
 }
 
+function formattedDateString (date) {
+  return date.toISOString().substring(0, 10)
+}
+
 function getStartDate () {
   const value = document.getElementsByTagName('input')['dateStr'].value
-  return new Date(Date.parse(`${value.substr(0, 4)}-${value.substr(4, 2)}-${value.substr(6, 2)}`))
+  const date = new Date(Date.parse(`${value.substr(0, 4)}-${value.substr(4, 2)}-${value.substr(6, 2)}`))
+  // Check if it is a monday
+  if (date.getDay() === 1) return date
+
+  date.setDate(date.getDate() - (date.getDay() - 1))
+  return date
 }
 
 function notInFuture (i) {
   let date = getStartDate()
   date.setDate(date.getDate() + i)
-  return new Date().toISOString().substring(0, 10) >= date.toISOString().substring(0, 10)
+  const today = formattedDateString(new Date())
+  const candidate = formattedDateString(date)
+  console.log(today, candidate)
+  return today >= candidate
 }
 
 function fillDefaultHours () {
@@ -80,3 +93,25 @@ function fillDefaultHours () {
       })
   })
 }
+
+function createDateSelectorLink (text, date) {
+  const a = document.createElement('a')
+  const href = document.createAttribute('href')
+  const formattedDate = formattedDateString(date).replace(/-/g, '')
+  href.value = `https://layer10.actitime.com/user/submit_tt.do?dateStr=${formattedDate}`
+  a.attributes.setNamedItem(href)
+  a.innerText = text
+  return a
+}
+
+function createWeekLinks () {
+  const linkContainer = document.getElementById('fromDateSelector')
+  const prevDate = getStartDate()
+  prevDate.setDate(prevDate.getDate() - 7)
+  linkContainer.appendChild(createDateSelectorLink('<< Previous week', prevDate))
+  linkContainer.appendChild(document.createTextNode(' '))
+  const nextDate = getStartDate()
+  nextDate.setDate(nextDate.getDate() + 7)
+  linkContainer.appendChild(createDateSelectorLink('Next week >>', nextDate))
+}
+
