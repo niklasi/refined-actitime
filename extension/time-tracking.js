@@ -98,7 +98,7 @@ function createDateSelectorLink (text, date) {
   const a = document.createElement('a')
   const href = document.createAttribute('href')
   const formattedDate = formattedDateString(date).replace(/-/g, '')
-  href.value = `https://layer10.actitime.com/user/submit_tt.do?dateStr=${formattedDate}`
+  href.value = `submit_tt.do?dateStr=${formattedDate}`
   a.attributes.setNamedItem(href)
   a.innerText = text
   return a
