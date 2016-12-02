@@ -25,8 +25,22 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.message === 'ready') {
     fillDefaultHours()
     createWeekLinks()
+    AddKeyboardShortcuts()
   }
 })
+
+function GoToLocation(url) {
+  window.location = url;
+}
+
+function AddKeyboardShortcuts() {
+  Mousetrap.bind(['h','left'], function(e) {
+    GoToLocation(document.getElementById("previousWeek").href);
+  });
+  Mousetrap.bind(['l','right'], function(e) {
+    GoToLocation(document.getElementById("nextWeek").href);
+  });
+}
 
 function hasClass (el, className) {
   for (let item of el.classList.values()) {
@@ -94,12 +108,15 @@ function fillDefaultHours () {
   })
 }
 
-function createDateSelectorLink (text, date) {
+function createDateSelectorLink (text, date, id) {
   const a = document.createElement('a')
+  const idAttribute = document.createAttribute('id')
   const href = document.createAttribute('href')
   const formattedDate = formattedDateString(date).replace(/-/g, '')
   href.value = `submit_tt.do?dateStr=${formattedDate}`
+  idAttribute.value = id
   a.attributes.setNamedItem(href)
+  a.attributes.setNamedItem(idAttribute)
   a.innerText = text
   return a
 }
@@ -108,10 +125,10 @@ function createWeekLinks () {
   const linkContainer = document.getElementById('fromDateSelector')
   const prevDate = getStartDate()
   prevDate.setDate(prevDate.getDate() - 7)
-  linkContainer.appendChild(createDateSelectorLink('<< Previous week', prevDate))
+  linkContainer.appendChild(createDateSelectorLink('<< Previous week', prevDate, 'previousWeek'))
   linkContainer.appendChild(document.createTextNode(' '))
   const nextDate = getStartDate()
   nextDate.setDate(nextDate.getDate() + 7)
-  linkContainer.appendChild(createDateSelectorLink('Next week >>', nextDate))
+  linkContainer.appendChild(createDateSelectorLink('Next week >>', nextDate, 'nextWeek'))
 }
 

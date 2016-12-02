@@ -30,7 +30,8 @@
         "content.css"
       ],
 			"js": [
-				"time-tracking.js"
+				"time-tracking.js",
+				"mousetrap.min.js"
 			]
 		}
 	]
