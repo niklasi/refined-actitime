@@ -87,7 +87,6 @@ function notInFuture (i) {
   date.setDate(date.getDate() + i)
   const today = formattedDateString(new Date())
   const candidate = formattedDateString(date)
-  console.log(today, candidate)
   return today >= candidate
 }
 
