@@ -25,20 +25,20 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.message === 'ready') {
     fillDefaultHours()
     createWeekLinks()
-    AddKeyboardShortcuts()
+    addKeyboardShortcuts()
   }
 })
 
-function GoToLocation(url) {
+function goToLocation(url) {
   window.location = url;
 }
 
-function AddKeyboardShortcuts() {
+function addKeyboardShortcuts() {
   Mousetrap.bind(['h','left'], function(e) {
-    GoToLocation(document.getElementById("previousWeek").href);
+    goToLocation(document.getElementById("previousWeek").href);
   });
   Mousetrap.bind(['l','right'], function(e) {
-    GoToLocation(document.getElementById("nextWeek").href);
+    goToLocation(document.getElementById("nextWeek").href);
   });
 }
 
